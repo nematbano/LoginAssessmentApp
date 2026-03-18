@@ -87,7 +87,7 @@ adb shell am instrument -w com.example.androidloginapp.test/androidx.test.runner
 
 1. Clone the repository
 
-git clone https://github.com/yourusername/android-login-app.git
+git clone https://github.com/nematbano/LoginAssessmentApp.git
 
 2. Open the project in Android Studio
 
