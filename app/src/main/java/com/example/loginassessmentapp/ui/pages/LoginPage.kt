@@ -64,6 +64,7 @@ fun LoginPage(
             onClick = {
                 viewModel.resetUiState()
                 viewModel.validateLogin(password.trim())
+                password = ""
 
             },
         ) { Text(stringResource(R.string.login_button)) }
@@ -71,7 +72,6 @@ fun LoginPage(
         when (uiState) {
             is UiState.None -> {}
             is UiState.Error -> {
-                password = ""
                 Text(stringResource((uiState as UiState.Error).type.resId))
             }
 

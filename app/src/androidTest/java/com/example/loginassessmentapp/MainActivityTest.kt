@@ -60,4 +60,41 @@ class MainActivityTest {
 
         }
     }
+
+    @Test
+    fun mainActivityTest_whenWrongPasswordEntered_showsError() {
+        val passwordField = device.wait(
+            Until.findObject(By.text("Password")),
+            5000
+        )
+        passwordField.click()
+        device.executeShellCommand("input text wrongPassword")
+
+        val loginButton = device.findObject(UiSelector().text("Login"))
+        if (!loginButton.exists()) {
+            device.pressBack()
+        }
+        loginButton.click()
+
+        val errorMessage = device.findObject(UiSelector().text("Please enter the correct password"))
+        assert(errorMessage.exists())
+    }
+
+    @Test
+    fun mainActivityTest_whenNoPasswordEntered_showsError() {
+        val passwordField = device.wait(
+            Until.findObject(By.text("Password")),
+            5000
+        )
+        passwordField.click()
+
+        val loginButton = device.findObject(UiSelector().text("Login"))
+        if (!loginButton.exists()) {
+            device.pressBack()
+        }
+        loginButton.click()
+
+        val errorMessage = device.findObject(UiSelector().text("Please enter the password"))
+        assert(errorMessage.exists())
+    }
 }
